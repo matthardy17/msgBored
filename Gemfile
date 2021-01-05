@@ -24,8 +24,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap_form'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'devise'
-gem 'jquery-rails'
 gem 'faker'
+gem 'jquery-rails'
+gem 'will_paginate', '~> 3.1.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

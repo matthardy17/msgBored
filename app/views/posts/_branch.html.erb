@@ -5,13 +5,17 @@
   </div><!-- row -->
 
   <div class="row">
-    <%= render 'posts/branch/categories', branch: branch %>
+    <%= render 'posts/branch/categories' %>
   </div>
 
   <div class="row">
     <div class="col-sm-12" id="feed">
       <%= render @posts %>
-      <%= render no_posts_partial_path %>		
+      <% if @posts.empty? %>
+        <%= render 'posts/branch/no_posts' %>
+      <% else %>
+        <%= render 'shared/empty_partial' %>
+      <% end %>
     </div>
   </div><!-- row -->	
 

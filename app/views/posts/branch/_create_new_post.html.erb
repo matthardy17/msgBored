@@ -1,5 +1,9 @@
 <div class="col-sm-12">
   <div class="col-sm-8 col-sm-offset-2">
-    <%= render create_new_post_partial_path, branch: branch %>
+    <% if user_signed_in? %>
+      <%= render 'posts/branch/create_new_post/signed_in' %>
+    <% else %>
+      <%= render 'posts/branch/create_new_post/not_signed_in' %>
+    <% end %>
   </div><!-- col-sm-8 -->	
 </div><!-- col-sm-12 -->

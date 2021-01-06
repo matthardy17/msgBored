@@ -1,0 +1,24 @@
+<% branch_path_name = "#{params[:action]}_posts_path" %>
+
+<div class="col-sm-12">
+  <ul class="categories-list">
+    <% if params[:category].blank? %>
+      <li class="category-item">
+        <%= link_to "All", 
+                    send(branch_path_name), 
+                    :class => "selected-item"  %>
+      </li>
+    <% else %>
+      <li class="category-item">
+        <%= link_to "All", send(branch_path_name) %>
+      </li>
+    <% end %>
+    <% @categories.each do |category| %>
+      <li class="category-item">
+        <%= link_to category.name, 
+                    send(branch_path_name, category: category.name), 
+                    :class => ("selected-item" if params[:category] == category.name) %>
+      </li>
+    <% end %>
+  </ul>
+</div><!-- col-sm-12 -->

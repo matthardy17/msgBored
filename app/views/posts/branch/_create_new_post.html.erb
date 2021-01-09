@@ -1,9 +1,29 @@
-<div class="col-sm-12">
+<!-- <div class="col-sm-12">
   <div class="col-sm-8 col-sm-offset-2">
     <% if user_signed_in? %>
       <%= render 'posts/branch/create_new_post/signed_in' %>
     <% else %>
       <%= render 'posts/branch/create_new_post/not_signed_in' %>
+    <% end %>
+  </div><!-- col-sm-8 -->	
+<%# </div><!-- col-sm-12 --> %>
+
+<div class="col-sm-12">
+  <div class="col-sm-8 col-sm-offset-2">
+    <% if user_signed_in? %>
+      <div class="new-post-button-parent">
+        <span>Cannot find anyone? Try to: </span>
+        <%= link_to "Create a new post", 
+                    new_post_path(branch: branch), 
+                    :class => "new-post-button" %>
+      </div>
+    <% else %>
+      <div class="text-center login-branch">
+        To create a new post you have to 
+        <%= link_to 'Login', 
+                    login_path, 
+                    class: 'login-button login-button-branch' %>
+      </div>
     <% end %>
   </div><!-- col-sm-8 -->	
 </div><!-- col-sm-12 -->

@@ -1,7 +1,27 @@
 class PostsController < ApplicationController
+  before_action :redirect_if_not_signed_in, only: [:new]
+
   def show
     @post = Post.find(params[:id])
   end
+
+  def new
+    @branch = params[:branch]
+    @categories = Category.where(branch: @branch)
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      flash[:success] = "Object successfully created"
+      redirect_to post_path(@post)
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to root_path
+    end
+  end
+    
 
   def hobby
     posts_for_branch(params[:action])
@@ -16,6 +36,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def post_params
+    params.require(:post).permit(:content, :title, :category_id).merge(user_id: current_user.id)
+  end
 
   def posts_for_branch(branch)
     @categories = Category.where(branch: branch)
@@ -33,5 +57,4 @@ class PostsController < ApplicationController
       branch: params[:action]
     }).call
   end
-
 end
